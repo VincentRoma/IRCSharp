@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form
+    public partial class IRCE : Form
     {
-        public Form1()
+        public IRCE()
         {
             InitializeComponent();
+        }
+
+        private void labelClientHote_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
