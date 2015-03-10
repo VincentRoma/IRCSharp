@@ -1,2 +1,2 @@
-# IRECE
-An IRC Client / Server App wrote in C#
+# IRCSharp
+An IRC developed in C#
