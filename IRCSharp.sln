@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRECE", "IRECE\IRECE.csproj", "{4A191EF5-AA4C-45C3-B82E-EECC10523B02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRCSharp", "IRECE\IRCSharp.csproj", "{4A191EF5-AA4C-45C3-B82E-EECC10523B02}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientIRC", "WindowsFormsApplication1\ClientIRC.csproj", "{1CF696BD-BDF7-4901-9D33-234962540BBA}"
 EndProject

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class IRCE
+    partial class IRCSharp
     {
         /// <summary>
         /// Variable nécessaire au concepteur.

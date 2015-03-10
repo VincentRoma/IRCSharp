@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class IRCE : Form
+    public partial class IRCSharp : Form
     {
-        public IRCE()
+        public IRCSharp()
         {
             InitializeComponent();
         }
