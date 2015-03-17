@@ -20,24 +20,22 @@ namespace ConsoleApplication1
             TcpListener listener = new TcpListener(ipAd,5000);
             listener.Start();
             Console.WriteLine("The server is running at port 5000...");
-            Console.WriteLine("The local End point is  :" +
-                              listener.LocalEndpoint);
+            Console.WriteLine("The local End point is  :" + listener.LocalEndpoint);
             Console.WriteLine("Waiting for a connection.....");
 
-            Socket soc = listener.AcceptSocket();
-            Console.WriteLine("Connection accepted from " + soc.RemoteEndPoint);
+            TcpClient clientSocket = listener.AcceptTcpClient();
+            Console.WriteLine("Connection accepted from " + clientSocket.ToString());
 
-            byte[] b=new byte[100];
-            int k=soc.Receive(b);
-            Console.WriteLine("Recieved...");
-            for (int i=0;i<k;i++)
-                Console.Write(Convert.ToChar(b[i]));
-
-            ASCIIEncoding asen=new ASCIIEncoding();
-            soc.Send(asen.GetBytes("The string was recieved by the server."));
-            Console.WriteLine("\nSent Acknowledgement");
-            /* clean up */            
-            soc.Close();
+            //byte[] b=new byte[100];
+            //int k=soc.Receive(b);
+            NetworkStream networkStream = clientSocket.GetStream();
+            StreamReader streamReader = new StreamReader(networkStream);
+            StreamWriter streamWriter = new StreamWriter(networkStream);
+            while (true)
+            {
+                Console.WriteLine("New Message");
+                Console.WriteLine(streamReader.Read());
+            }
             listener.Stop();
             //Stream s = new NetworkStream(soc);
         }
