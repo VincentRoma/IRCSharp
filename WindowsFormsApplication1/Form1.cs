@@ -72,30 +72,29 @@ namespace WindowsFormsApplication1
             this.ipAd = IPAddress.Parse(textBoxServeurHote.Text);
             this.clientSocket = new TcpClient();
             this.clientSocket.Connect(ipAd, int.Parse(textBoxServeurPort.Text));
-            this.NetworkStream = clientSocket.GetStream();
-            this.streamReader = new StreamReader(networkStream);
-            this.streamWriter = new StreamWriter(networkStream);
-
         }
 
         private void buttonEnvoyer_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Envoie un message : " + textBox2.Text);
+            //Console.WriteLine("Envoie un message : " + textBox2.Text);
         }
 
         private void sendButton_Click(object sender, EventArgs e)
         {
+            NetworkStream serverStream = clientSocket.GetStream();
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes("Message from Client$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
 
-
-         //   byte[] b = new byte[100];
-           // String str = textBox2.Text;
-            //byte[] converted = System.Text.Encoding.UTF8.GetBytes(str);
-            //networkStream.Write(converted, 0, 1);
-
-
-          //  Console.WriteLine("Envoie un message : " + textBox2.Text);
-            this.streamWriter.WriteLine(textBox2.Text);
-            this.streamWriter.Flush();
+            byte[] inStream = new byte[10025];
+            serverStream.Read(inStream, 0, (int)clientSocket.ReceiveBufferSize);
+            string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+            msg("Data from Server : " + returndata);
         }
+
+        public void msg(string mesg)
+        {
+            this.listMessages.Items.Add(mesg);
+        } 
     }
 }

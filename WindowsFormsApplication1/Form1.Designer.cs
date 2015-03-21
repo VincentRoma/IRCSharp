@@ -40,7 +40,6 @@
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.buttonEnvoyer = new System.Windows.Forms.Button();
             this.sendButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.groupBoxServeur.SuspendLayout();
@@ -52,7 +51,7 @@
             this.accueilToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(804, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(763, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -79,20 +78,20 @@
             // 
             this.textBoxServeurPort.Location = new System.Drawing.Point(42, 54);
             this.textBoxServeurPort.Name = "textBoxServeurPort";
-            this.textBoxServeurPort.Size = new System.Drawing.Size(100, 20);
+            this.textBoxServeurPort.Size = new System.Drawing.Size(126, 20);
             this.textBoxServeurPort.TabIndex = 5;
             // 
             // textBoxServeurHote
             // 
             this.textBoxServeurHote.Location = new System.Drawing.Point(42, 26);
             this.textBoxServeurHote.Name = "textBoxServeurHote";
-            this.textBoxServeurHote.Size = new System.Drawing.Size(100, 20);
+            this.textBoxServeurHote.Size = new System.Drawing.Size(126, 20);
             this.textBoxServeurHote.TabIndex = 4;
             // 
             // labelServeurPort
             // 
             this.labelServeurPort.AutoSize = true;
-            this.labelServeurPort.Location = new System.Drawing.Point(6, 57);
+            this.labelServeurPort.Location = new System.Drawing.Point(10, 57);
             this.labelServeurPort.Name = "labelServeurPort";
             this.labelServeurPort.Size = new System.Drawing.Size(26, 13);
             this.labelServeurPort.TabIndex = 2;
@@ -101,7 +100,7 @@
             // labelServeurServeur
             // 
             this.labelServeurServeur.AutoSize = true;
-            this.labelServeurServeur.Location = new System.Drawing.Point(6, 29);
+            this.labelServeurServeur.Location = new System.Drawing.Point(10, 29);
             this.labelServeurServeur.Name = "labelServeurServeur";
             this.labelServeurServeur.Size = new System.Drawing.Size(30, 13);
             this.labelServeurServeur.TabIndex = 2;
@@ -109,7 +108,7 @@
             // 
             // buttonConnexion
             // 
-            this.buttonConnexion.Location = new System.Drawing.Point(758, 67);
+            this.buttonConnexion.Location = new System.Drawing.Point(659, 144);
             this.buttonConnexion.Name = "buttonConnexion";
             this.buttonConnexion.Size = new System.Drawing.Size(93, 45);
             this.buttonConnexion.TabIndex = 3;
@@ -120,9 +119,9 @@
             // listMessages
             // 
             this.listMessages.FormattingEnabled = true;
-            this.listMessages.Location = new System.Drawing.Point(82, 52);
+            this.listMessages.Location = new System.Drawing.Point(12, 27);
             this.listMessages.Name = "listMessages";
-            this.listMessages.Size = new System.Drawing.Size(450, 303);
+            this.listMessages.Size = new System.Drawing.Size(560, 485);
             this.listMessages.TabIndex = 4;
             // 
             // textBoxMessage
@@ -144,7 +143,7 @@
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(678, 316);
+            this.sendButton.Location = new System.Drawing.Point(578, 521);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 7;
@@ -152,27 +151,19 @@
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 8;
-            // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(653, 290);
+            this.textBox2.Location = new System.Drawing.Point(12, 521);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(560, 20);
             this.textBox2.TabIndex = 9;
             // 
             // IRCSharp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 403);
+            this.ClientSize = new System.Drawing.Size(763, 553);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.sendButton);
             this.Controls.Add(this.buttonEnvoyer);
             this.Controls.Add(this.textBoxMessage);
@@ -206,7 +197,6 @@
         private System.Windows.Forms.TextBox textBoxMessage;
         private System.Windows.Forms.Button buttonEnvoyer;
         private System.Windows.Forms.Button sendButton;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
     }
 }
