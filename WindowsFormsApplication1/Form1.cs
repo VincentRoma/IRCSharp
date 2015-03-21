@@ -93,7 +93,7 @@ namespace WindowsFormsApplication1
             //networkStream.Write(converted, 0, 1);
 
 
-            Console.WriteLine("Envoie un message : " + textBox2.Text);
+          //  Console.WriteLine("Envoie un message : " + textBox2.Text);
             this.streamWriter.WriteLine(textBox2.Text);
             this.streamWriter.Flush();
         }

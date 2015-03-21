@@ -11,6 +11,13 @@ namespace ConsoleApplication1
 {
     class Program
     {
+        private List<TcpClient> clients;
+
+        public List<TcpClient> Clients
+        {
+            get { return clients; }
+            set { clients = value; }
+        }
 
         static void Main(string[] args)
         {
@@ -23,9 +30,13 @@ namespace ConsoleApplication1
             Console.WriteLine("The local End point is  :" + listener.LocalEndpoint);
             Console.WriteLine("Waiting for a connection.....");
 
-            TcpClient clientSocket = listener.AcceptTcpClient();
-            Console.WriteLine("Connection accepted from " + clientSocket.ToString());
 
+          
+                TcpClient clientSocket = listener.AcceptTcpClient();
+                
+                Console.WriteLine("Connection accepted from " + clientSocket.ToString());
+
+            
             //int k=soc.Receive(b);
             NetworkStream networkStream = clientSocket.GetStream();
             StreamReader streamReader = new StreamReader(networkStream);
