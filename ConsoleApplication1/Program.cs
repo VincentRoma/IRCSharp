@@ -26,15 +26,21 @@ namespace ConsoleApplication1
             TcpClient clientSocket = listener.AcceptTcpClient();
             Console.WriteLine("Connection accepted from " + clientSocket.ToString());
 
-            //byte[] b=new byte[100];
             //int k=soc.Receive(b);
             NetworkStream networkStream = clientSocket.GetStream();
             StreamReader streamReader = new StreamReader(networkStream);
             StreamWriter streamWriter = new StreamWriter(networkStream);
+            streamWriter.AutoFlush = true;
+//byte[] b = new byte[100];
+
+            
             while (true)
             {
-                Console.WriteLine("New Message");
-                Console.WriteLine(streamReader.Read());
+                Console.WriteLine("Message : "+streamReader.ReadLine());
+             //   networkStream.Read(b, 0, 1);
+             //   string line = Encoding.UTF8.GetString(b);
+             //   Console.WriteLine(line);
+
             }
             listener.Stop();
             //Stream s = new NetworkStream(soc);

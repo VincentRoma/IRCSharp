@@ -49,6 +49,14 @@ namespace WindowsFormsApplication1
             set { streamWriter = value; }
         }
 
+        private NetworkStream networkStream;
+
+        public NetworkStream NetworkStream
+        {
+            get { return networkStream; }
+            set { networkStream = value; }
+        }
+
         public IRCSharp()
         {
             InitializeComponent();
@@ -64,7 +72,7 @@ namespace WindowsFormsApplication1
             this.ipAd = IPAddress.Parse(textBoxServeurHote.Text);
             this.clientSocket = new TcpClient();
             this.clientSocket.Connect(ipAd, int.Parse(textBoxServeurPort.Text));
-            NetworkStream networkStream = clientSocket.GetStream();
+            this.NetworkStream = clientSocket.GetStream();
             this.streamReader = new StreamReader(networkStream);
             this.streamWriter = new StreamWriter(networkStream);
 
@@ -72,8 +80,22 @@ namespace WindowsFormsApplication1
 
         private void buttonEnvoyer_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Envoie un message : " + textBoxMessage.Text);
-            this.streamWriter.Write(textBoxMessage.Text);
+            Console.WriteLine("Envoie un message : " + textBox2.Text);
+        }
+
+        private void sendButton_Click(object sender, EventArgs e)
+        {
+
+
+         //   byte[] b = new byte[100];
+           // String str = textBox2.Text;
+            //byte[] converted = System.Text.Encoding.UTF8.GetBytes(str);
+            //networkStream.Write(converted, 0, 1);
+
+
+            Console.WriteLine("Envoie un message : " + textBox2.Text);
+            this.streamWriter.WriteLine(textBox2.Text);
+            this.streamWriter.Flush();
         }
     }
 }

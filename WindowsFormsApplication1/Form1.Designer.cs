@@ -39,6 +39,9 @@
             this.listMessages = new System.Windows.Forms.ListBox();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.buttonEnvoyer = new System.Windows.Forms.Button();
+            this.sendButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.groupBoxServeur.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +52,7 @@
             this.accueilToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(863, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(804, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -117,9 +120,9 @@
             // listMessages
             // 
             this.listMessages.FormattingEnabled = true;
-            this.listMessages.Location = new System.Drawing.Point(149, 163);
+            this.listMessages.Location = new System.Drawing.Point(82, 52);
             this.listMessages.Name = "listMessages";
-            this.listMessages.Size = new System.Drawing.Size(603, 563);
+            this.listMessages.Size = new System.Drawing.Size(450, 303);
             this.listMessages.TabIndex = 4;
             // 
             // textBoxMessage
@@ -139,11 +142,38 @@
             this.buttonEnvoyer.UseVisualStyleBackColor = true;
             this.buttonEnvoyer.Click += new System.EventHandler(this.buttonEnvoyer_Click);
             // 
+            // sendButton
+            // 
+            this.sendButton.Location = new System.Drawing.Point(678, 316);
+            this.sendButton.Name = "sendButton";
+            this.sendButton.Size = new System.Drawing.Size(75, 23);
+            this.sendButton.TabIndex = 7;
+            this.sendButton.Text = "Send";
+            this.sendButton.UseVisualStyleBackColor = true;
+            this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 8;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(653, 290);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 9;
+            // 
             // IRCSharp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(863, 766);
+            this.ClientSize = new System.Drawing.Size(804, 403);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.sendButton);
             this.Controls.Add(this.buttonEnvoyer);
             this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.listMessages);
@@ -175,6 +205,9 @@
         private System.Windows.Forms.ListBox listMessages;
         private System.Windows.Forms.TextBox textBoxMessage;
         private System.Windows.Forms.Button buttonEnvoyer;
+        private System.Windows.Forms.Button sendButton;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
