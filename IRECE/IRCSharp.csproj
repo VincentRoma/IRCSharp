@@ -7,7 +7,7 @@
     <ProjectGuid>{4A191EF5-AA4C-45C3-B82E-EECC10523B02}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IRECE</RootNamespace>
+    <RootNamespace>IRCSharp</RootNamespace>
     <AssemblyName>IRECE</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
