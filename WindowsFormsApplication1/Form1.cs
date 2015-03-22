@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using System.Threading;
 
 
 
@@ -25,37 +26,10 @@ namespace WindowsFormsApplication1
             set { ipAd = value; }
         }
 
-        private TcpClient clientSocket;
-
-        public TcpClient ClientSocket
-        {
-            get { return clientSocket; }
-            set { clientSocket = value; }
-        }
-
-        private StreamReader streamReader;
-
-        public StreamReader StreamReader
-        {
-            get { return streamReader; }
-            set { streamReader = value; }
-        }
-
-        private StreamWriter streamWriter;
-
-        public StreamWriter StreamWriter
-        {
-            get { return streamWriter; }
-            set { streamWriter = value; }
-        }
-
-        private NetworkStream networkStream;
-
-        public NetworkStream NetworkStream
-        {
-            get { return networkStream; }
-            set { networkStream = value; }
-        }
+        System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
+        NetworkStream serverStream = default(NetworkStream);
+        string readData = null;
+        
 
         public IRCSharp()
         {
@@ -71,31 +45,53 @@ namespace WindowsFormsApplication1
         {
             this.ipAd = IPAddress.Parse(textBoxServeurHote.Text);
             this.clientSocket = new TcpClient();
+            readData = "Conected to Chat Server ...";
+            msg();
             this.clientSocket.Connect(ipAd, int.Parse(textBoxServeurPort.Text));
-            this.NetworkStream = clientSocket.GetStream();
-            this.streamReader = new StreamReader(networkStream);
-            this.streamWriter = new StreamWriter(networkStream);
+            serverStream = clientSocket.GetStream();
 
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBoxName.Text + "$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
+
+            Thread ctThread = new Thread(getMessage);
+            ctThread.Start();
         }
 
         private void buttonEnvoyer_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Envoie un message : " + textBox2.Text);
+            //Console.WriteLine("Envoie un message : " + textBox2.Text);
         }
 
         private void sendButton_Click(object sender, EventArgs e)
         {
-
-
-         //   byte[] b = new byte[100];
-           // String str = textBox2.Text;
-            //byte[] converted = System.Text.Encoding.UTF8.GetBytes(str);
-            //networkStream.Write(converted, 0, 1);
-
-
-            Console.WriteLine("Envoie un message : " + textBox2.Text);
-            this.streamWriter.WriteLine(textBox2.Text);
-            this.streamWriter.Flush();
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBox2.Text + "$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
         }
+
+        private void getMessage()
+        {
+            while (true)
+            {
+                serverStream = clientSocket.GetStream();
+                int buffSize = 0;
+                byte[] inStream = new byte[10025];
+                buffSize = clientSocket.ReceiveBufferSize;
+                serverStream.Read(inStream, 0, buffSize);
+                string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+                readData = "" + returndata;
+                msg();
+            }
+        }
+
+        private void msg()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(msg));
+            else
+                listMessages.Items.Add(" >> " + readData);
+        }
+
     }
 }
