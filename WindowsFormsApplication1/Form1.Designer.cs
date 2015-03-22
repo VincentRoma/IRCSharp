@@ -41,6 +41,7 @@
             this.buttonEnvoyer = new System.Windows.Forms.Button();
             this.sendButton = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.groupBoxServeur.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +68,7 @@
             this.groupBoxServeur.Controls.Add(this.textBoxServeurHote);
             this.groupBoxServeur.Controls.Add(this.labelServeurPort);
             this.groupBoxServeur.Controls.Add(this.labelServeurServeur);
-            this.groupBoxServeur.Location = new System.Drawing.Point(578, 38);
+            this.groupBoxServeur.Location = new System.Drawing.Point(589, 80);
             this.groupBoxServeur.Name = "groupBoxServeur";
             this.groupBoxServeur.Size = new System.Drawing.Size(174, 100);
             this.groupBoxServeur.TabIndex = 2;
@@ -108,7 +109,7 @@
             // 
             // buttonConnexion
             // 
-            this.buttonConnexion.Location = new System.Drawing.Point(659, 144);
+            this.buttonConnexion.Location = new System.Drawing.Point(670, 186);
             this.buttonConnexion.Name = "buttonConnexion";
             this.buttonConnexion.Size = new System.Drawing.Size(93, 45);
             this.buttonConnexion.TabIndex = 3;
@@ -158,11 +159,19 @@
             this.textBox2.Size = new System.Drawing.Size(560, 20);
             this.textBox2.TabIndex = 9;
             // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(589, 38);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(168, 20);
+            this.textBoxName.TabIndex = 10;
+            // 
             // IRCSharp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 553);
+            this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.sendButton);
             this.Controls.Add(this.buttonEnvoyer);
@@ -198,6 +207,7 @@
         private System.Windows.Forms.Button buttonEnvoyer;
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxName;
     }
 }
 

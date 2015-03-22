@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using System.Threading;
 
 
 
@@ -25,37 +26,10 @@ namespace WindowsFormsApplication1
             set { ipAd = value; }
         }
 
-        private TcpClient clientSocket;
-
-        public TcpClient ClientSocket
-        {
-            get { return clientSocket; }
-            set { clientSocket = value; }
-        }
-
-        private StreamReader streamReader;
-
-        public StreamReader StreamReader
-        {
-            get { return streamReader; }
-            set { streamReader = value; }
-        }
-
-        private StreamWriter streamWriter;
-
-        public StreamWriter StreamWriter
-        {
-            get { return streamWriter; }
-            set { streamWriter = value; }
-        }
-
-        private NetworkStream networkStream;
-
-        public NetworkStream NetworkStream
-        {
-            get { return networkStream; }
-            set { networkStream = value; }
-        }
+        System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
+        NetworkStream serverStream = default(NetworkStream);
+        string readData = null;
+        
 
         public IRCSharp()
         {
@@ -71,7 +45,17 @@ namespace WindowsFormsApplication1
         {
             this.ipAd = IPAddress.Parse(textBoxServeurHote.Text);
             this.clientSocket = new TcpClient();
+            readData = "Conected to Chat Server ...";
+            msg();
             this.clientSocket.Connect(ipAd, int.Parse(textBoxServeurPort.Text));
+            serverStream = clientSocket.GetStream();
+
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBoxName.Text + "$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
+
+            Thread ctThread = new Thread(getMessage);
+            ctThread.Start();
         }
 
         private void buttonEnvoyer_Click(object sender, EventArgs e)
@@ -81,20 +65,33 @@ namespace WindowsFormsApplication1
 
         private void sendButton_Click(object sender, EventArgs e)
         {
-            NetworkStream serverStream = clientSocket.GetStream();
-            byte[] outStream = System.Text.Encoding.ASCII.GetBytes("Message from Client$");
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBox2.Text + "$");
             serverStream.Write(outStream, 0, outStream.Length);
             serverStream.Flush();
-
-            byte[] inStream = new byte[10025];
-            serverStream.Read(inStream, 0, (int)clientSocket.ReceiveBufferSize);
-            string returndata = System.Text.Encoding.ASCII.GetString(inStream);
-            msg("Data from Server : " + returndata);
         }
 
-        public void msg(string mesg)
+        private void getMessage()
         {
-            this.listMessages.Items.Add(mesg);
-        } 
+            while (true)
+            {
+                serverStream = clientSocket.GetStream();
+                int buffSize = 0;
+                byte[] inStream = new byte[10025];
+                buffSize = clientSocket.ReceiveBufferSize;
+                serverStream.Read(inStream, 0, buffSize);
+                string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+                readData = "" + returndata;
+                msg();
+            }
+        }
+
+        private void msg()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(msg));
+            else
+                listMessages.Items.Add(" >> " + readData);
+        }
+
     }
 }
