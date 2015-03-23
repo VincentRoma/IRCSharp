@@ -35,13 +35,13 @@ namespace ConsoleApplication1
                 string dataFromClient = null;
 
                 NetworkStream networkStream = clientSocket.GetStream();
-                networkStream.Read(bytesFrom, 0, (int)clientSocket.ReceiveBufferSize);
+                networkStream.Read(bytesFrom, 0, bytesFrom.Length);
                 dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
                 dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
-
+                
                 clientsList.Add(dataFromClient, clientSocket);
 
-                broadcast(dataFromClient + " Joined ", dataFromClient, false);
+                broadcast(dataFromClient + " :Joined ", dataFromClient, false);
 
                 Console.WriteLine(dataFromClient + " Joined chat room ");
                 handleClinet client = new handleClinet();
@@ -96,21 +96,29 @@ namespace ConsoleApplication1
         {
             int requestCount = 0;
             byte[] bytesFrom = new byte[10025];
-            string dataFromClient = null;
+            string dataFromClient = "";
             Byte[] sendBytes = null;
             string serverResponse = null;
             string rCount = null;
             requestCount = 0;
-
+             
             while ((true))
             {
                 try
                 {
                     requestCount = requestCount + 1;
                     NetworkStream networkStream = clientSocket.GetStream();
-                    networkStream.Read(bytesFrom, 0, (int)clientSocket.ReceiveBufferSize);
+                    networkStream.Read(bytesFrom, 0,  10025);
                     dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
-                    dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
+
+                    if (dataFromClient.IndexOf("$")>0)
+                    {
+                        dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
+                    }
+                    else
+                    {
+                        dataFromClient = "2rror";
+                    }
                     Console.WriteLine("From client - " + clNo + " : " + dataFromClient);
                     rCount = Convert.ToString(requestCount);
 

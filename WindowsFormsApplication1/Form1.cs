@@ -65,7 +65,10 @@ namespace WindowsFormsApplication1
 
         private void sendButton_Click(object sender, EventArgs e)
         {
+            
             byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBox2.Text + "$");
+            //byte[] outStream = Encoding.ASCII.GetBytes("PCK|SCAN|5025066840471");
+
             serverStream.Write(outStream, 0, outStream.Length);
             serverStream.Flush();
         }
@@ -77,7 +80,8 @@ namespace WindowsFormsApplication1
                 serverStream = clientSocket.GetStream();
                 int buffSize = 0;
                 byte[] inStream = new byte[10025];
-                buffSize = clientSocket.ReceiveBufferSize;
+                buffSize = 10025;
+
                 serverStream.Read(inStream, 0, buffSize);
                 string returndata = System.Text.Encoding.ASCII.GetString(inStream);
                 readData = "" + returndata;
